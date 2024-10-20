@@ -1,18 +1,11 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
-<h2>Olympic Games Medals</h2>
-<hr />
-<ngx-charts-bar-vertical
-  [view]="[700, 400]"
-  [scheme]="'cool'"
-  [results]="chartData"
-  [gradient]="true"
-  [xAxis]="true"
-  [yAxis]="true"
-  [legend]="true"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  xAxisLabel="Country"
-  yAxisLabel="Total Medals">
-</ngx-charts-bar-vertical>
+<div class="home">
+  <ngx-charts-pie-chart
+    [view]="[700, 400]"
+    [scheme]="'cool'"
+    [results]="chartData"
+    [gradient]="false"
+    [labels]="true"
+    [legend]="true"
+  >
+  </ngx-charts-pie-chart>
+</div>
