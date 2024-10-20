@@ -4,4 +4,29 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    h2{
+        background-color: #04838F;
+        padding: 1em 2em;
+        color: #fff;
+        border-radius: 1em;
+    }
+    .review__stats{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        gap: 1em;
+        .review__stats__item{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+           padding: 0.5em 1em;
+            border :2px solid #04838F;
+            border-radius: 1em;
+
+           
+           
+        }
+    }
 }
