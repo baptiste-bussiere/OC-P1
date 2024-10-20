@@ -1,11 +1,27 @@
 <div class="home">
-  <ngx-charts-pie-chart
-    [view]="[700, 400]"
-    [scheme]="'cool'"
-    [results]="chartData"
-    [gradient]="false"
-    [labels]="true"
-    [legend]="true"
-  >
-  </ngx-charts-pie-chart>
-</div>
+
+
+    <h2>Medals per Country</h2>
+    <div class="review__stats">
+        <div class="review__stats__item">
+            <p>Number of JOs</p>
+            <span>10</span>
+
+        </div>
+        <div class="review__stats__item">
+         <p>Number of countries</p>   
+         <span>10</span>
+        </div>
+    
+    </div>
+    
+    <ngx-charts-pie-chart
+      [view]="[700, 400]"
+      [scheme]="'cool'"
+      [results]="chartData"
+      [gradient]="false"
+      [labels]="true"
+      [legend]="true"
+    >
+    </ngx-charts-pie-chart>
+    </div>
