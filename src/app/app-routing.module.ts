@@ -9,11 +9,11 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+  { path: 'details/:name', component: DetailsComponent },
   {
     path: '**', 
     component: NotFoundComponent,
-  },
-  { path: 'details/:name', component: DetailsComponent }  
+  }
 
 ];
 
