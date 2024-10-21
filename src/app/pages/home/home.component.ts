@@ -26,8 +26,6 @@ export class HomeComponent implements OnInit {
     });
   }
   onChartSelect(event: any): void {
-    console.log(event);  
-  
     this.router.navigate(['/details', event.name]); 
   }
   

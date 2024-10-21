@@ -17,15 +17,19 @@ export class DetailsComponent implements OnInit {
     const countryName = this.route.snapshot.paramMap.get('name');
     this.olympicService.getOlympics().subscribe((data: any[]) => {
       this.countryData = data.find(country => country.country === countryName);
-    });
-
+    });    
   }
 
   getCountryParticipationData() {
-    return this.countryData.participations.map((participation: Participation) => ({ 
-      name: participation.year.toString(),  
-      value: participation.medalsCount  
+    const series = this.countryData.participations.map((participation: Participation) => ({
+      name: participation.year.toString(), 
+      value: participation.medalsCount 
     }));
+  
+    return [{
+      name: this.countryData.country, 
+      series: series 
+    }];
   }
   
   

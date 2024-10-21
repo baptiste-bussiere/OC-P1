@@ -1,3 +1,14 @@
 <h2>Details for {{ countryData?.country }}</h2>
 
-
+<div *ngIf="countryData">
+    <ngx-charts-line-chart
+    [view]="[700, 400]"
+    [scheme]="'cool'"
+    [results]="getCountryParticipationData()"
+    [gradient]="false"
+    [showGridLines]="true"
+    [xAxis]="true"
+    [yAxis]="true"
+  >
+  </ngx-charts-line-chart>
+</div>
