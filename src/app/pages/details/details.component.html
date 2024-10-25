@@ -1,41 +1,37 @@
-<div class="details">
-
-    <div class="details__header">
-
-
-        <h2>{{ countryData?.country }}</h2>
-        <div class="review__stats">
-            <div class="review__stats__item">
-                <p>Total number entries</p>
-                <span>10</span>
-    
-            </div>
-            <div class="review__stats__item">
-             <p>Total number medals</p>   
-             <span>10</span>
-            </div>
-            <div class="review__stats__item">
-                <p>Total number of athletes</p>   
-                <span>10</span>
-               </div>
-        
-        </div>
-    </div>
-
-
-<div  *ngIf="countryData">
-    <ngx-charts-line-chart
-    [view]="[700, 400]"
-    [scheme]="'cool'"
-    [results]="getCountryParticipationData()"
-    [gradient]="false"
-    [showGridLines]="true"
-    [animations]="true"
-    [xAxis]="true"
-    [yAxis]="true"
-    
-  >
-
-  </ngx-charts-line-chart>
+<div class="back__button">
+    <button (click)="goHome()">Back to home</button>
 </div>
+
+<div class="details">
+  <div class="details__header">
+    <h2>{{ countryData?.country }}</h2>
+    <div class="review__stats">
+      <div class="review__stats__item">
+        <p>Total number entries</p>
+        <span>{{ countryData?.participations?.length || 0 }}</span>
+      </div>
+      <div class="review__stats__item">
+        <p>Total number medals</p>
+        <span>{{ getTotalMedals() }}</span>
+      </div>
+      <div class="review__stats__item">
+        <p>Total number of athletes</p>
+        <span>{{ getTotalAthlete() }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="countryData">
+    <ngx-charts-line-chart
+      [view]="[700, 400]"
+      [scheme]="'cool'"
+      [results]="getCountryParticipationData()"
+      [gradient]="false"
+      [showGridLines]="true"
+      [animations]="true"
+      [xAxis]="true"
+      [yAxis]="true"
+    >
+    </ngx-charts-line-chart>
+  </div>
 </div>
