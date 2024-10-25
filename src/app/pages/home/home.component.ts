@@ -18,13 +18,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics();
-    this.olympics$.subscribe((data: Country[]) => {
-      this.chartData = data.map(country => ({
-        name: country.country,
-        value: country.participations.reduce((acc: number, participation: Participation) => acc + participation.medalsCount, 0)
-      }));
+    this.olympics$.subscribe((data: Country[] | undefined) => {
+      if (data) { // Vérifie si les données sont définies
+        this.chartData = data.map(country => ({
+          name: country.country,
+          value: country.participations.reduce((acc: number, participation: Participation) => acc + participation.medalsCount, 0)
+        }));
+      } 
     });
   }
+  
   onChartSelect(event: any): void {
     this.router.navigate(['/details', event.name]); 
   }

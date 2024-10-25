@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OlympicService } from 'src/app/core/services/olympic.service';
-import { Participation } from 'src/app/core/models/olympic.model';  
+import { Participation } from 'src/app/core/models/olympic.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -11,26 +12,48 @@ import { Participation } from 'src/app/core/models/olympic.model';
 export class DetailsComponent implements OnInit {
   public countryData: any;
 
-  constructor(private route: ActivatedRoute, private olympicService: OlympicService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private olympicService: OlympicService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const countryName = this.route.snapshot.paramMap.get('name');
     this.olympicService.getOlympics().subscribe((data: any[]) => {
-      this.countryData = data.find(country => country.country === countryName);
-    });    
-  }
+      
+      this.countryData = data?.find(
+        (country) => country.country === countryName
+      );
+      console.log(this.countryData.participations);
 
-  getCountryParticipationData() {
-    const series = this.countryData.participations.map((participation: Participation) => ({
-      name: participation.year.toString(), 
-      value: participation.medalsCount 
-    }));
-  
-    return [{
-      name: this.countryData.country, 
-      series: series 
-    }];
+    });
+    
   }
-  
-  
+  goHome() {
+    this.router.navigate(['/']);
+  }
+  getTotalMedals(): number {
+    if (!this.countryData || !this.countryData.participations) return 0;
+    return this.countryData.participations.reduce((acc : any, participation : Participation) => acc + participation.medalsCount, 0);
+  }
+  getTotalAthlete(): number {
+    if (!this.countryData || !this.countryData.participations) return 0;
+    return this.countryData.participations.reduce((acc : any, participation : Participation) => acc + participation.athleteCount, 0);
+  }
+  getCountryParticipationData() {
+    const series = this.countryData.participations.map(
+      (participation: Participation) => ({
+        name: participation.year.toString(),
+        value: participation.medalsCount,
+      })
+    );
+
+    return [
+      {
+        name: this.countryData.country,
+        series: series,
+      },
+    ];
+  }
 }
