@@ -21,7 +21,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     const countryName = this.route.snapshot.paramMap.get('name');
     this.olympicService.getOlympics().subscribe((data: any[]) => {
-      this.countryData = data.find(
+      
+      this.countryData = data?.find(
         (country) => country.country === countryName
       );
       console.log(this.countryData.participations);
