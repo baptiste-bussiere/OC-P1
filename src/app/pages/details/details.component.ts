@@ -9,28 +9,31 @@ import { Router } from '@angular/router';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
 })
+
 export class DetailsComponent implements OnInit {
   public countryData: any;
-
   constructor(
     private route: ActivatedRoute,
     private olympicService: OlympicService,
     private router: Router
   ) {}
 
+  
   ngOnInit(): void {
     const countryName = this.route.snapshot.paramMap.get('name');
     this.olympicService.getOlympics().subscribe((data: any[]) => {
-      
       this.countryData = data?.find(
         (country) => country.country === countryName
       );
       console.log(this.countryData.participations);
-
     });
     
   }
   goHome() {
+    this.router.navigate(['/']);
+  }
+
+  goBack() {
     this.router.navigate(['/']);
   }
   getTotalMedals(): number {

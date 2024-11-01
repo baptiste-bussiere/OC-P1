@@ -18,8 +18,6 @@
     </div>
 </div>
 <div class="home__body" *ngIf="chartData">
-
-
     <ngx-charts-pie-chart
       [view]="[700, 400]"
       [scheme]="'cool'"
@@ -28,7 +26,6 @@
       [labels]="true"
       [legend]="false"
       (select)="onChartSelect($event)"
-
     >
     </ngx-charts-pie-chart>
     </div>
