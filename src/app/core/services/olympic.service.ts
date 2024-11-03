@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Country } from 'src/app/core/models/olympic.model'; // Assurez-vous que le chemin est correct
+import { Country } from 'src/app/core/models/olympic.model'; 
 
 @Injectable({
   providedIn: 'root',

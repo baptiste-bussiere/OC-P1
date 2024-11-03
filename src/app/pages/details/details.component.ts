@@ -26,12 +26,12 @@ export class DetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private olympicService: OlympicService,
     private router: Router,
-    private cdr: ChangeDetectorRef 
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     const countryName = this.route.snapshot.paramMap.get('name');
-    this.olympicService.loadInitialData().pipe(take(1)).subscribe(() => {
+    this.olympicService.loadInitialData().subscribe(() => {
       const olympicsSubscription = this.olympicService.getOlympics().subscribe((data: CountryData[] | undefined) => {
         this.countryData = data?.find((country) => country.country === countryName);
         if (this.countryData && this.countryData.participations) {
@@ -44,9 +44,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
             0
           );
         }
-        this.cdr.markForCheck(); 
+        this.cdr.markForCheck();
+        // this.cdr.detectChanges();
       });
-
       this.subscription.add(olympicsSubscription);
     });
   }
