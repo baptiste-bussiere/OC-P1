@@ -17,10 +17,10 @@
     
     </div>
 </div>
-<div class="home__body" *ngIf="chartData">
+<div class="home__body">
     <ngx-charts-pie-chart
     [scheme]="'cool'"
-      [results]="chartData"
+      [results]="chartData$|async"
       [gradient]="false"
       [labels]="true"
       [legend]="false"
