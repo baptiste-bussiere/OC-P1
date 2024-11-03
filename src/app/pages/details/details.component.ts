@@ -4,7 +4,6 @@ import { Subscription, take } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Participation } from 'src/app/core/models/olympic.model';
 
-// Définir une interface pour représenter les données d'un pays
 interface CountryData {
   country: string;
   participations: Participation[];

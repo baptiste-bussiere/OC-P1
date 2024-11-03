@@ -8,7 +8,9 @@ import { OlympicService } from './core/services/olympic.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+   title = 'angular-olympics';
   constructor(private olympicService: OlympicService) {}
+
 
   ngOnInit(): void {
     this.olympicService.loadInitialData().pipe(take(1)).subscribe();

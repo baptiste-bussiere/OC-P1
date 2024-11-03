@@ -4,19 +4,17 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Country, Participation } from 'src/app/core/models/olympic.model';  
 import { Router } from '@angular/router';
 
-// Définir une interface pour le type de données du graphique
 interface ChartData {
   name: string;
   value: number;
 }
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public chartData: ChartData[] = []; // Typage du tableau chartData
+  public chartData: ChartData[] = []; 
   private subscription: Subscription = new Subscription();
 
   constructor(private olympicService: OlympicService, private router: Router) {}
@@ -38,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.add(olympicsSubscription);
   }
 
-  onChartSelect(event: { name: string }): void { // Typage de l'événement
+  onChartSelect(event: { name: string }): void { 
     this.router.navigate(['/details', event.name]); 
   }
 
