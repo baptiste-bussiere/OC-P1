@@ -12,18 +12,17 @@
       </div>
       <div class="review__stats__item">
         <p>Total number medals</p>
-        <span>{{ getTotalMedals() }}</span>
+        <span>{{ totalMedals }}</span>
       </div>
       <div class="review__stats__item">
         <p>Total number of athletes</p>
-        <span>{{ getTotalAthlete() }}</span>
+        <span>{{ totalAthletes }}</span>
       </div>
     </div>
   </div>
 
-  <div *ngIf="countryData">
+  <div *ngIf="countryData" class="details__body">
     <ngx-charts-line-chart
-      [view]="[700, 400]"
       [scheme]="'cool'"
       [results]="getCountryParticipationData()"
       [gradient]="false"
