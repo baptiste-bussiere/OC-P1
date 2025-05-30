@@ -1,17 +1,31 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
+<div class="home">
 
-<div *ngIf="olympics$ | async as olympics">
-  <div *ngFor="let country of olympics">
-    <h3>{{ country.country }}</h3>
-    <ul>
-      <li *ngFor="let participation of country.participations">
-        Year: {{ participation.year }},
-        City: {{ participation.city }},
-        Medals Count: {{ participation.medalsCount }},
-        Athlete Count: {{ participation.athleteCount }}
-      </li>
-    </ul>
-  </div>
+<div class="home__header">
+
+
+    <h2>Medals per Country</h2>
+    <div class="review__stats">
+        <div class="review__stats__item">
+            <p>Number of JOs</p>
+            <span>10</span>
+
+        </div>
+        <div class="review__stats__item">
+         <p>Number of countries</p>   
+         <span>10</span>
+        </div>
+    
+    </div>
+</div>
+<div class="home__body" *ngIf="chartData">
+    <ngx-charts-pie-chart
+    [scheme]="'cool'"
+      [results]="chartData"
+      [gradient]="false"
+      [labels]="true"
+      [legend]="false"
+      (select)="onChartSelect($event)"
+    >
+    </ngx-charts-pie-chart>
+    </div>
 </div>

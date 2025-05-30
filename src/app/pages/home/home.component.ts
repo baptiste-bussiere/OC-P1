@@ -1,20 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
+import { Country, Participation } from 'src/app/core/models/olympic.model';  
+import { Router } from '@angular/router';
 
+interface ChartData {
+  name: string;
+  value: number;
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  public olympics$: Observable<any> = of(null);
+export class HomeComponent implements OnInit, OnDestroy {
+  public chartData: ChartData[] = []; 
+  private subscription: Subscription = new Subscription();
 
-  constructor(private olympicService: OlympicService) {}
+  constructor(private olympicService: OlympicService, private router: Router) {}
 
   ngOnInit(): void {
-    this.olympics$ = this.olympicService.getOlympics();
-    console.log(this.olympics$);
-    
+    const olympicsSubscription = this.olympicService.loadInitialData().subscribe(() => {
+      const dataSubscription = this.olympicService.getOlympics().subscribe((data: Country[] | undefined) => {
+        if (data) {
+          this.chartData = data.map(country => ({
+            name: country.country,
+            value: country.participations.reduce((acc: number, participation: Participation) => acc + participation.medalsCount, 0)
+          }));
+        } else {
+          console.warn('Aucune donnée disponible.');
+        }
+      });
+      this.subscription.add(dataSubscription);
+    });
+    this.subscription.add(olympicsSubscription);
+  }
+
+  onChartSelect(event: { name: string }): void { 
+    this.router.navigate(['/details', event.name]); 
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

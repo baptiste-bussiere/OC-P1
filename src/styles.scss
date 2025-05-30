@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'suisseintl';
+    src: url('./assets/fonts/suisseintl.ttf') format('truetype');
+}
+
+body{
+    font-family: 'suisseintl';
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}

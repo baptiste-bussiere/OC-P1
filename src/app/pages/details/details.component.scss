@@ -1,30 +1,28 @@
-.home {
+.details {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  .home__body {
+  &__body{
     width: 100%; 
     height: 40%; 
-    max-width: 600px; 
+    max-width: 600px;
   }
-  
-  ngx-charts-pie-chart {
+  ngx-charts-line-chart {
     width: 100%; 
+    height: auto; 
   }
-  
   &__header {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-bottom: 1em;
     h2 {
       background-color: #04838f;
       padding: 0.5em 2em;
       color: #fff;
       border-radius: 0.6em;
       text-align: center;
-      width: 100%;
     }
     .review__stats {
       display: flex;
@@ -43,10 +41,35 @@
       }
     }
   }
-
+  &__body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .chart{
+      width: 100%;
+      height: 300px;
+    }
+  }
 }
+
+.back__button {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  button {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    background-color: #04838f;
+    border-radius: 0.5em;
+    color: #fff;
+    padding: 0.5em 1.5em;
+  }
+}
+
 @media (max-width: 768px) { 
-  .home__header {
+  .details__header {
+    width: 80%;
     h2 {
       font-size: 1.3rem;
       padding: 0.4em 1.5em;
@@ -59,25 +82,6 @@
       .review__stats__item {
         width: 100%;
         font-size: 0.9rem;
-      }
-    }
-  }
-}
-
-@media (max-width: 576px) {
- 
-
-  .home__header {
-    h2 {
-      font-size: 1.1rem;
-      padding: 0.3em 0.5em;
-      width: 100%;
-    }
-
-    .review__stats {
-      .review__stats__item {
-        padding: 0.3em 0.6em;
-        font-size: 0.85rem;
       }
     }
   }
